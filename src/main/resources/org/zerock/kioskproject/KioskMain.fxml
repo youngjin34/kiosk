@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.zerock.kioskproject.KioskMainController">
+  <padding>
+    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+  </padding>
+
+  <Button text="주문하기" prefHeight="150" prefWidth="350" fx:id="switchToOrderButton"/>
+  <Button text="정보보기" prefHeight="150" prefWidth="350" fx:id="switchToInfoButton"/>
+</VBox>
