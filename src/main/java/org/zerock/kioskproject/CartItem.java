@@ -3,9 +3,9 @@ package org.zerock.kioskproject;
 public class CartItem {
   private String name;
   private int quantity;
-  private double price;
+  private int price;
 
-  public CartItem(String name, int quantity, double price) {
+  public CartItem(String name, int quantity, int price) {
     this.name = name;
     this.quantity = quantity;
     this.price = price;
@@ -23,11 +23,7 @@ public class CartItem {
     this.quantity = quantity;
   }
 
-  public double getPrice() {
-    return price;
-  }
-
-  public double getTotalPrice() {
+  public int getTotalPrice() {
     return quantity * price;
   }
 }

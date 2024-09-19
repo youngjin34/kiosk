@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.zerock.kioskproject.KioskPaymentController">
+  <top>
+    <ToolBar>
+      <Label text="결제 화면"/>
+    </ToolBar>
+  </top>
+  <center>
+    <VBox spacing="10">
+      <Label text="장바구니 내용"/>
+      <ListView fx:id="paymentListView" prefHeight="300"/>
+      <Label fx:id="totalPriceLabel" text="총 가격: 0원"/>
+    </VBox>
+  </center>
+  <bottom>
+    <ToolBar>
+      <Button text="결제" onAction="#handlePaymentButton"/>
+      <Button text="뒤로" onAction="#handleBackButton"/>
+    </ToolBar>
+  </bottom>
+</BorderPane>

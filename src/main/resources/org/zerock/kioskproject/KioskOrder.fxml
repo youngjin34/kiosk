@@ -43,10 +43,10 @@
                 <ImageView fx:id="latteImage" onMouseClicked="#onImageClick" fitHeight="120" fitWidth="120"
                            pickOnBounds="true" preserveRatio="true">
                   <image>
-                    <Image url="@images/americano.jpg"/>
+                    <Image url="@images/cafelatte.jpg" requestedWidth="120" requestedHeight="120"/>
                   </image>
                 </ImageView>
-                <Label text="라떼" style="-fx-font-size: 18px;"/>
+                <Label text="카페라떼" style="-fx-font-size: 18px;"/>
                 <Label text="5500원" style="-fx-font-size: 16px; -fx-text-fill: gray;"/>
               </VBox>
 
@@ -54,37 +54,56 @@
                 <ImageView fx:id="mocaImage" onMouseClicked="#onImageClick" fitHeight="120" fitWidth="120"
                            pickOnBounds="true" preserveRatio="true">
                   <image>
-                    <Image url="@images/americano.jpg"/>
+                    <Image url="@images/cafemoca.png" requestedWidth="120" requestedHeight="120"/>
                   </image>
                 </ImageView>
-                <Label text="모카" style="-fx-font-size: 18px;"/>
+                <Label text="카페모카" style="-fx-font-size: 18px;"/>
                 <Label text="5500원" style="-fx-font-size: 16px; -fx-text-fill: gray;"/>
               </VBox>
 
               <VBox layoutX="510" layoutY="50" alignment="CENTER" spacing="10.0">
-                <ImageView fitHeight="120" fitWidth="120" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="cappuccinoImage" onMouseClicked="#onImageClick" fitHeight="120" fitWidth="120"
+                           pickOnBounds="true" preserveRatio="true">
                   <image>
-                    <Image url="@images/americano.jpg"/>
+                    <Image url="@images/cappuccino.jpg" requestedWidth="120" requestedHeight="120"/>
                   </image>
                 </ImageView>
-                <Label text="아메리카노" style="-fx-font-size: 18px;"/>
-                <Label text="5500원" style="-fx-font-size: 16px; -fx-text-fill: gray;"/>
+                <Label text="카푸치노" style="-fx-font-size: 18px;"/>
+                <Label text="5000원" style="-fx-font-size: 16px; -fx-text-fill: gray;"/>
               </VBox>
 
               <VBox layoutX="60" layoutY="330" alignment="CENTER" spacing="10.0">
-                <ImageView fitHeight="120" fitWidth="120" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="viennaImage" onMouseClicked="#onImageClick" fitHeight="120" fitWidth="120"
+                           pickOnBounds="true" preserveRatio="true">
                   <image>
-                    <Image url="@images/americano.jpg"/>
+                    <Image url="@images/vienna.jpg" requestedWidth="120" requestedHeight="120"/>
                   </image>
                 </ImageView>
-                <Label text="아메리카노" style="-fx-font-size: 18px;"/>
-                <Label text="5500원" style="-fx-font-size: 16px; -fx-text-fill: gray;"/>
+                <Label text="비엔나" style="-fx-font-size: 18px;"/>
+                <Label text="6000원" style="-fx-font-size: 16px; -fx-text-fill: gray;"/>
               </VBox>
             </children>
           </AnchorPane>
         </content>
       </Tab>
-      <Tab text="음료" style="-fx-font-size: 18px"></Tab>
+      <Tab text="음료" style="-fx-font-size: 18px">
+        <content>
+          <AnchorPane prefHeight="500" prefWidth="600">
+            <children>
+              <VBox layoutX="60" layoutY="50" alignment="CENTER" spacing="10.0">
+                <ImageView fx:id="strawberryLatteImage" onMouseClicked="#onImageClick" fitHeight="120" fitWidth="120"
+                           pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@images/strawberryLatte.jpg" requestedWidth="120" requestedHeight="120"/>
+                  </image>
+                </ImageView>
+                <Label text="딸기라떼" style="-fx-font-size: 18px;"/>
+                <Label text="6000원" style="-fx-font-size: 16px; -fx-text-fill: gray;"/>
+              </VBox>
+            </children>
+          </AnchorPane>
+        </content>
+      </Tab>
       <Tab text="디저트" style="-fx-font-size: 18px"></Tab>
     </tabs>
   </TabPane>
@@ -96,5 +115,7 @@
     <ListView fx:id="cartListView"/>
     <!-- 총 가격을 표시할 Label 추가 -->
     <Label fx:id="totalLabel" text="총 가격: 0원" style="-fx-font-size: 18px;"/>
+
+    <Button text="주문하기" onAction="#handleOrderButton"/>
   </VBox>
 </AnchorPane>
