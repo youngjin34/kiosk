@@ -12,6 +12,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.zerock.kioskproject.KioskOrderController">
 
   <!-- 홈 버튼을 오른쪽 위에 배치 -->
@@ -26,55 +27,40 @@
         <content>
           <AnchorPane prefHeight="500" prefWidth="600">
             <children>
-              <!-- 첫 번째 커피 이미지와 수량 조절 -->
+
               <VBox layoutX="60" layoutY="50" alignment="CENTER" spacing="10.0">
-                <ImageView fitHeight="120" fitWidth="120" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="americanoImage" onMouseClicked="#onImageClick" fitHeight="120" fitWidth="120"
+                           pickOnBounds="true" preserveRatio="true">
                   <image>
                     <Image url="@images/americano.jpg"/>
                   </image>
                 </ImageView>
                 <Label text="아메리카노" style="-fx-font-size: 18px;"/>
-                <Label text="5500원" style="-fx-font-size: 16px; -fx-text-fill: gray;"/>
-                <HBox alignment="CENTER" spacing="10.0">
-                  <Button fx:id="decreaseButton1" text="-" onAction="#decreaseQuantity" prefWidth="40"/>
-                  <Label fx:id="quantityLabel1" text="1" style="-fx-font-size: 18px;"/>
-                  <Button fx:id="increaseButton1" text="+" onAction="#increaseQuantity" prefWidth="40"/>
-                </HBox>
+                <Label text="5000원" style="-fx-font-size: 16px; -fx-text-fill: gray;"/>
               </VBox>
 
-              <!-- 두 번째 커피 이미지와 수량 조절 -->
               <VBox layoutX="210" layoutY="50" alignment="CENTER" spacing="10.0">
-                <ImageView fitHeight="120" fitWidth="120" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="latteImage" onMouseClicked="#onImageClick" fitHeight="120" fitWidth="120"
+                           pickOnBounds="true" preserveRatio="true">
                   <image>
                     <Image url="@images/americano.jpg"/>
                   </image>
                 </ImageView>
-                <Label text="아메리카노" style="-fx-font-size: 18px;"/>
+                <Label text="라떼" style="-fx-font-size: 18px;"/>
                 <Label text="5500원" style="-fx-font-size: 16px; -fx-text-fill: gray;"/>
-                <HBox alignment="CENTER" spacing="10.0">
-                  <Button fx:id="decreaseButton2" text="-" onAction="#decreaseQuantity" prefWidth="40"/>
-                  <Label fx:id="quantityLabel2" text="1" style="-fx-font-size: 18px;"/>
-                  <Button fx:id="increaseButton2" text="+" onAction="#increaseQuantity" prefWidth="40"/>
-                </HBox>
               </VBox>
 
-              <!-- 세 번째 커피 이미지와 수량 조절 -->
               <VBox layoutX="360" layoutY="50" alignment="CENTER" spacing="10.0">
-                <ImageView fitHeight="120" fitWidth="120" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="mocaImage" onMouseClicked="#onImageClick" fitHeight="120" fitWidth="120"
+                           pickOnBounds="true" preserveRatio="true">
                   <image>
                     <Image url="@images/americano.jpg"/>
                   </image>
                 </ImageView>
-                <Label text="아메리카노" style="-fx-font-size: 18px;"/>
+                <Label text="모카" style="-fx-font-size: 18px;"/>
                 <Label text="5500원" style="-fx-font-size: 16px; -fx-text-fill: gray;"/>
-                <HBox alignment="CENTER" spacing="10.0">
-                  <Button fx:id="decreaseButton3" text="-" onAction="#decreaseQuantity" prefWidth="40"/>
-                  <Label fx:id="quantityLabel3" text="1" style="-fx-font-size: 18px;"/>
-                  <Button fx:id="increaseButton3" text="+" onAction="#increaseQuantity" prefWidth="40"/>
-                </HBox>
               </VBox>
 
-              <!-- 네 번째 커피 이미지와 수량 조절 -->
               <VBox layoutX="510" layoutY="50" alignment="CENTER" spacing="10.0">
                 <ImageView fitHeight="120" fitWidth="120" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -83,14 +69,8 @@
                 </ImageView>
                 <Label text="아메리카노" style="-fx-font-size: 18px;"/>
                 <Label text="5500원" style="-fx-font-size: 16px; -fx-text-fill: gray;"/>
-                <HBox alignment="CENTER" spacing="10.0">
-                  <Button fx:id="decreaseButton4" text="-" onAction="#decreaseQuantity" prefWidth="40"/>
-                  <Label fx:id="quantityLabel4" text="1" style="-fx-font-size: 18px;"/>
-                  <Button fx:id="increaseButton4" text="+" onAction="#increaseQuantity" prefWidth="40"/>
-                </HBox>
               </VBox>
 
-              <!-- 다섯 번째 커피 이미지와 수량 조절 -->
               <VBox layoutX="60" layoutY="330" alignment="CENTER" spacing="10.0">
                 <ImageView fitHeight="120" fitWidth="120" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -99,13 +79,7 @@
                 </ImageView>
                 <Label text="아메리카노" style="-fx-font-size: 18px;"/>
                 <Label text="5500원" style="-fx-font-size: 16px; -fx-text-fill: gray;"/>
-                <HBox alignment="CENTER" spacing="10.0">
-                  <Button fx:id="decreaseButton5" text="-" onAction="#decreaseQuantity" prefWidth="40"/>
-                  <Label fx:id="quantityLabel5" text="1" style="-fx-font-size: 18px;"/>
-                  <Button fx:id="increaseButton5" text="+" onAction="#increaseQuantity" prefWidth="40"/>
-                </HBox>
               </VBox>
-
             </children>
           </AnchorPane>
         </content>
@@ -114,4 +88,13 @@
       <Tab text="디저트" style="-fx-font-size: 18px"></Tab>
     </tabs>
   </TabPane>
+
+  <!-- 장바구니에 추가된 아이템을 보여주는 ListView -->
+  <VBox AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10" prefWidth="700"
+        prefHeight="200">
+    <Label text="장바구니" style="-fx-font-size: 18px;"/>
+    <ListView fx:id="cartListView"/>
+    <!-- 총 가격을 표시할 Label 추가 -->
+    <Label fx:id="totalLabel" text="총 가격: 0원" style="-fx-font-size: 18px;"/>
+  </VBox>
 </AnchorPane>
