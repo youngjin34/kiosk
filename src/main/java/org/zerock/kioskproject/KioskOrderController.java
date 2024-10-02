@@ -3,7 +3,6 @@ package org.zerock.kioskproject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler; // 추가된 import 문
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
@@ -132,7 +131,7 @@ public class KioskOrderController {
 
     try (Connection conn = DriverManager.getConnection(url, user, password);
          PreparedStatement pstmt = conn.prepareStatement(query)) {
-      
+
       pstmt.setString(1, itemName);
 
       try (ResultSet rs = pstmt.executeQuery()) {
@@ -148,7 +147,7 @@ public class KioskOrderController {
     return 0;  // 해당 메뉴가 없으면 0원을 반환
   }
 
-  private void updateCartView() {
+  void updateCartView() {
     ObservableList<HBox> cartDisplayItems = FXCollections.observableArrayList();
     int totalPrice = 0;
 
@@ -221,6 +220,11 @@ public class KioskOrderController {
     } else {
       System.err.println("MainApp is null");
     }
+  }
+
+  public void clearCart() {
+    cartItems.clear(); // 장바구니 초기화
+    updateCartView(); // 장바구니 UI 업데이트
   }
 
   public ObservableList<CartItem> getCartItems() {

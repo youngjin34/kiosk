@@ -20,6 +20,7 @@ import javafx.util.Duration;
 public class KioskPaymentController {
 
   private KioskMain mainApp;
+  private KioskOrderController orderController;
   private ObservableList<CartItem> cartItems;
 
   @FXML
@@ -74,10 +75,24 @@ public class KioskPaymentController {
   private void handlePaymentButton(ActionEvent event) {
     // 결제 버튼 클릭 시 처리할 로직
     showPaymentConfirmation();
+
+    // 결제 후 장바구니 초기화
+    cartItems.clear();  // 결제 화면의 장바구니 리스트 비우기
+
+    // 주문 화면의 장바구니도 초기화
+    if (mainApp != null) {
+      KioskOrderController orderController = mainApp.getOrderController(); // 주문 화면 컨트롤러 가져오기
+      if (orderController != null) {
+        orderController.clearCart(); // 주문 화면의 장바구니 초기화
+      }
+    }
+
+    // UI 갱신
+    updatePaymentView(); // 장바구니가 비워진 상태를 결제 화면에 반영
   }
 
+
   private void showPaymentConfirmation() {
-    // 확인 이미지를 별도의 Stage로 표시하기
     Stage confirmationStage = new Stage();
     confirmationStage.initModality(Modality.APPLICATION_MODAL);
     confirmationStage.initOwner(paymentListView.getScene().getWindow());
@@ -86,22 +101,30 @@ public class KioskPaymentController {
     VBox confirmationBox = new VBox(confirmationImage);
     confirmationBox.setStyle("-fx-alignment: center; -fx-padding: 20;");
 
-    Scene confirmationScene = new Scene(confirmationBox, 450, 450); // 이미지 사이즈에 맞게 조절
+    Scene confirmationScene = new Scene(confirmationBox, 450, 450);
     confirmationStage.setScene(confirmationScene);
     confirmationStage.show();
 
-    // 잠시 동안 확인 이미지를 보여줍니다
+    // 3초 동안 확인 이미지를 보여준 후 결제 완료 처리
     PauseTransition pause = new PauseTransition(Duration.seconds(3));
     pause.setOnFinished(e -> {
-      confirmationStage.close(); // 확인 이미지가 사라진 후 홈 화면으로 이동
+      confirmationStage.close(); // 확인 이미지 닫기
       if (mainApp != null) {
-        mainApp.switchToMainScene(); // 홈 화면으로 돌아가기
-        System.out.println("결제되었습니다.");
+        cartItems.clear(); // 장바구니 비우기
+        mainApp.switchToMainScene(); // 홈 화면으로 이동
+        System.out.println("결제가 완료되었습니다. 장바구니를 비웁니다.");
       } else {
         System.err.println("MainApp is null");
       }
     });
-    pause.play(); // 3초 동안 확인 이미지 보여주기
+    pause.play();
+  }
+
+  public void switchToOrderScene() {
+    // 기존 화면 전환 로직
+
+    // 장바구니가 비워졌으므로 주문 화면에서 UI 갱신
+    orderController.updateCartView();
   }
 
 

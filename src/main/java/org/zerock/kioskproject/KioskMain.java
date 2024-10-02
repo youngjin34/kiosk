@@ -64,6 +64,10 @@ public class KioskMain extends Application {
     return paymentController;
   }
 
+  public KioskOrderController getOrderController() {
+    return orderController; // 주문 화면 컨트롤러 반환
+  }
+
   public void switchToOrderScene() {
     primaryStage.setScene(orderScene);
   }
